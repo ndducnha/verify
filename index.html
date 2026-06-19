@@ -20,8 +20,8 @@
   --sans:'IBM Plex Sans',system-ui,sans-serif;
   --mono:'IBM Plex Mono',monospace;
 }
-html{font-size:14px;-webkit-font-smoothing:antialiased}
-body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6}
+html{font-size:14px;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
 
 /* ── Header ── */
 .header{padding:20px 16px 14px;border-bottom:1px solid var(--rule)}
@@ -85,7 +85,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1
 .stab.active{background:var(--bg3);color:var(--ink);border-color:var(--rule)}
 
 /* ── Price table ── */
-.pw{overflow-x:auto;margin-bottom:12px;border-radius:7px;border:1px solid var(--rule)}
+.pw{overflow-x:auto;margin-bottom:12px;border-radius:7px;border:1px solid var(--rule);-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
 .pt{width:100%;border-collapse:collapse;font-size:11px;min-width:380px}
 .pt th{text-align:left;padding:7px 10px;background:var(--bg3);font:500 9px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);border-bottom:1px solid var(--rule2)}
 .pt th.r{text-align:right}
@@ -139,10 +139,50 @@ body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1
 
 hr{border:none;border-top:1px solid var(--rule);margin:14px 0}
 
+/* ── Responsive: máy tính bảng ── */
 @media(max-width:600px){
   .ig{grid-template-columns:1fr}
   .tc{grid-template-columns:1fr}
   .dpkg-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ── Responsive: điện thoại ── */
+@media(max-width:560px){
+  html{font-size:13.5px}
+  .header{padding:18px 14px 12px}
+  .title{font-size:18px}
+  .content{padding:14px 12px}
+  .snav{padding:9px 12px;gap:6px}
+  .sp{padding:7px 11px}            /* vùng chạm rộng hơn */
+  .stab{padding:6px 11px;font-size:11px}
+  .stabs{gap:5px}
+  .sh-row{flex-direction:column;align-items:flex-start;gap:6px}
+  .sh-title{font-size:15px}
+  /* gợi ý có thể cuộn ngang bảng giá */
+  .pw{position:relative}
+  .pt{min-width:340px}
+  .pt th,.pt td{padding:7px 9px}
+}
+
+/* ── Responsive: điện thoại nhỏ ── */
+@media(max-width:400px){
+  html{font-size:13px}
+  .content{padding:12px 10px}
+  .header{padding:16px 12px 11px}
+  .title{font-size:17px}
+  .dpkg-grid{grid-template-columns:1fr}   /* gói thiết kế xếp dọc 1 cột */
+  .badges{gap:3px}
+  .badge{font-size:8.5px;padding:2px 6px}
+  .pt{min-width:320px}
+  .pt th,.pt td{padding:6px 8px;font-size:10.5px}
+  .placeholder{padding:20px 12px}
+}
+
+/* thanh cuộn ngang hiển thị rõ trên thiết bị cảm ứng */
+@media(hover:none) and (pointer:coarse){
+  .pw::-webkit-scrollbar{height:5px}
+  .pw::-webkit-scrollbar-thumb{background:var(--rule2);border-radius:3px}
+  .pw::-webkit-scrollbar-track{background:transparent}
 }
 </style>
 </head>
